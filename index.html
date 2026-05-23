@@ -385,6 +385,34 @@ const series = [
       {src:'images/TDP_TAPE/IMG_4374.jpg'},{src:'images/TDP_TAPE/IMG_4356.jpg'},
       {src:'images/TDP_TAPE/IMG_4346.jpg'}
     ]
+  },
+  {
+    title: 'SPOTLESS OR GO HOME TEE',
+    cover: { src:'images/SPOTLESSTEE/000126490038.jpg', w:240, h:360 },
+    photos: [
+      {src:'images/SPOTLESSTEE/000126490038.jpg'},{src:'images/SPOTLESSTEE/000127380006_5.jpg'},
+      {src:'images/SPOTLESSTEE/000127380017_16.jpg'},{src:'images/SPOTLESSTEE/000127380019_18.jpg'},
+      {src:'images/SPOTLESSTEE/000127380025_24.jpg'},{src:'images/SPOTLESSTEE/000127380029_28.jpg'},
+      {src:'images/SPOTLESSTEE/000127380033_32.jpg'},{src:'images/SPOTLESSTEE/000127380035_34.jpg'},
+      {src:'images/SPOTLESSTEE/000127380038_37.jpg'},{src:'images/SPOTLESSTEE/000127400020_22A.jpg'},
+      {src:'images/SPOTLESSTEE/000127400030_32A.jpg'}
+    ] 
+  },
+  {
+    title: 'EDITORIAL SHOOT STUDIO',
+    cover: { src:'images/STUDIO/DSC01977.jpg', w:336, h:504 },
+    photos: [
+      {src:'images/STUDIO/DSC01977.jpg'},{src:'images/STUDIO/DSC02016.jpg'},
+      {src:'images/STUDIO/DSC02035.jpg'},{src:'images/STUDIO/DSC02077.jpg'},
+      {src:'images/STUDIO/DSCF8382.jpg'},{src:'images/STUDIO/DSCF8459.jpg'},
+      {src:'images/STUDIO/DSC01905.jpg'},{src:'images/STUDIO/DSC01939.jpg'},
+      {src:'images/STUDIO/DSCF8309.jpg'},{src:'images/STUDIO/DSCF8367.jpg'},
+      {src:'images/STUDIO/DSC02279.jpg'},{src:'images/STUDIO/DSC02298.jpg'},
+      {src:'images/STUDIO/DSC02328.jpg'},{src:'images/STUDIO/DSCF8635.jpg'},
+      {src:'images/STUDIO/DSC02369.jpg'},{src:'images/STUDIO/DSC02393.jpg'},
+      {src:'images/STUDIO/DSC02461.jpg'},{src:'images/STUDIO/DSC02533.jpg'},
+      {src:'images/STUDIO/DSCF8669.jpg'},{src:'images/STUDIO/DSCF8698.jpg'}
+    ]      
   }
 ];
 
@@ -483,13 +511,13 @@ function showPage(name){
 function makePh(cls,w,h){ const d=document.createElement('div');d.className=cls;d.style.width=w+'px';d.style.height=h+'px';return d; }
 function makeImg(src,w,h){ const i=document.createElement('img');i.src=src;i.style.cssText='width:'+w+'px;height:'+h+'px;object-fit:cover;display:block';return i; }
 
-// PHOTO WALL — 13 positions
+// PHOTO WALL — 15 positions
 const photoPos = [
   {l:3,  t:30},  {l:32, t:55},  {l:61, t:20},
   {l:72, t:330}, {l:5,  t:450}, {l:38, t:440},
   {l:63, t:520}, {l:16, t:740}, {l:50, t:760},
   {l:4,  t:1020},{l:36, t:1000},{l:66, t:1010},
-  {l:80,  t:670}
+  {l:80,  t:670},{l:27,  t:1310},{l:79, t:1270} 
 ];
 
 const wall = document.getElementById('wall');
