@@ -54,6 +54,21 @@ nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:
 .info-photo{position:absolute;cursor:default}
 .info-photo-ph{display:block}
 
+/* CLOTHES */
+#page-clothes{padding:5.5rem 3rem 6rem}
+.clothes-intro{font-size:0.7rem;letter-spacing:0.08em;color:#999;text-transform:lowercase;transform:scaleY(1.5);transform-origin:top left;display:inline-block;margin-bottom:2.5rem}
+.clothes-intro a{color:#1a1a18;text-decoration:none;border-bottom:1px solid #ddd;transition:color 0.15s,border-color 0.15s}
+.clothes-intro a:hover{color:#ff1493;border-color:#ff1493}
+.clothes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem 2rem}
+.cloth-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;cursor:pointer;transition:opacity 0.25s}
+.cloth-item:hover .cloth-img{opacity:0.65}
+.cloth-meta{display:block;margin-top:0.35rem;font-size:0.65rem;letter-spacing:0.08em;color:#999;text-transform:lowercase;transform:scaleY(1.5);transform-origin:top left;margin-bottom:0.3rem}
+.cloth-meta:first-of-type{margin-top:0.5rem;color:#1a1a18}
+.cloth-meta a{color:#1a1a18;text-decoration:none;border-bottom:1px solid #ddd;transition:color 0.15s,border-color 0.15s}
+.cloth-meta a:hover{color:#ff1493;border-color:#ff1493}
+.cloth-item.sold .cloth-img{opacity:0.3}
+.cloth-item.sold .cloth-cop{display:none}
+
 /* LIGHTBOX */
 #lightbox{display:none;position:fixed;inset:0;z-index:200;background:#fff;flex-direction:column;align-items:center;justify-content:center}
 #lightbox.open{display:flex}
@@ -144,6 +159,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:
     padding: 5rem 0 4rem;
   }
 
+  /* CLOTHES → 2 colonnes */
+  #page-clothes{padding:5rem 1rem 4rem}
+  .clothes-grid{grid-template-columns:1fr 1fr;gap:1.8rem 1rem}
+
   /* INFO → textes en flux normal + photos empilées */
   #page-info {
     position: static !important;
@@ -196,6 +215,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:
     <li><a href="#" onclick="showPage('photo');return false" id="nav-photo" class="active">photo</a></li>
     <li><a href="#" onclick="showPage('video');return false" id="nav-video">vidéo</a></li>
     <li><a href="#" onclick="showPage('graphisme');return false" id="nav-graphisme">graphisme</a></li>
+    <li><a href="#" onclick="showPage('clothes');return false" id="nav-clothes">clothes</a></li>
     <li><a href="#" onclick="showPage('info');return false" id="nav-info">info</a></li>
   </ul>
 </nav>
@@ -203,6 +223,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:
 <div class="page active" id="page-photo"><div id="wall"></div></div>
 <div class="page" id="page-video"><div class="video-grid" id="video-grid"></div></div>
 <div class="page" id="page-graphisme"><div id="gwall"></div></div>
+<div class="page" id="page-clothes">
+  <p class="clothes-intro">to cop, send me a message — <a href="https://ig.me/m/leooopoooold" target="_blank" rel="noopener">instagram</a></p>
+  <div class="clothes-grid" id="clothes-grid"></div>
+</div>
 <div class="page" id="page-info"></div>
 
 <div id="lightbox">
@@ -326,16 +350,19 @@ const series = [
   },
   {
     title: 'SPOTLESS',
-    cover: { src:'images/SPOTLESS/DSCF1919.jpg', w:300, h:400 },
+    cover: { src:'images/SPOTLESS/1.jpg', w:300, h:400 },
     photos: [
-      {src:'images/SPOTLESS/DSCF1919.jpg'},{src:'images/SPOTLESS/DSC00360.jpg'},
-      {src:'images/SPOTLESS/DSC00458.jpg'},{src:'images/SPOTLESS/DSC02804.jpg'},
-      {src:'images/SPOTLESS/DSC05495.jpg'},{src:'images/SPOTLESS/DSC05623.jpg'},
-      {src:'images/SPOTLESS/DSC05692.jpg'},{src:'images/SPOTLESS/DSC05732.jpg'},
-      {src:'images/SPOTLESS/DSCF4664.jpg'},{src:'images/SPOTLESS/DSCF4548.jpg'},
-      {src:'images/SPOTLESS/DSCF1655.jpg'},{src:'images/SPOTLESS/DSCF1674.jpg'},
-      {src:'images/SPOTLESS/DSCF1962.jpg'},{src:'images/SPOTLESS/DSCF3154.jpg'},
-      {src:'images/SPOTLESS/DSCF3171.jpg'},{src:'images/SPOTLESS/DSCF3172.jpg'}
+      {src:'images/SPOTLESS/1.jpg'},{src:'images/SPOTLESS/2.jpg'},
+      {src:'images/SPOTLESS/3.jpg'},{src:'images/SPOTLESS/4.jpg'},
+      {src:'images/SPOTLESS/5.jpg'},{src:'images/SPOTLESS/6.jpg'},
+      {src:'images/SPOTLESS/7.jpg'},{src:'images/SPOTLESS/8.jpg'},
+      {src:'images/SPOTLESS/9.jpg'},{src:'images/SPOTLESS/10.jpg'},
+      {src:'images/SPOTLESS/11.jpg'},{src:'images/SPOTLESS/12.jpg'},
+      {src:'images/SPOTLESS/14.jpg'},{src:'images/SPOTLESS/15.jpg'},
+      {src:'images/SPOTLESS/16.jpg'},{src:'images/SPOTLESS/17.jpg'},
+      {src:'images/SPOTLESS/18.jpg'},{src:'images/SPOTLESS/19.jpg'},
+      {src:'images/SPOTLESS/20.jpg'},{src:'images/SPOTLESS/21.jpg'},
+      {src:'images/SPOTLESS/22.jpg'},
     ]
   },
   {
@@ -413,14 +440,67 @@ const series = [
       {src:'images/STUDIO/DSC02461.jpg'},{src:'images/STUDIO/DSC02533.jpg'},
       {src:'images/STUDIO/DSCF8669.jpg'},{src:'images/STUDIO/DSCF8698.jpg'}
     ]      
-  }
+  },
+  {
+    title: 'VIETNAM',
+    cover: { src:'images/VIETNAM/1.jpg', w:420, h:280 },
+    photos: [
+      {src:'images/VIETNAM/1.jpg'},{src:'images/VIETNAM/2.jpg'},
+      {src:'images/VIETNAM/3.jpg'},{src:'images/VIETNAM/4.jpg'},
+      {src:'images/VIETNAM/5.jpg'},{src:'images/VIETNAM/6.jpg'},
+      {src:'images/VIETNAM/7.jpg'},{src:'images/VIETNAM/8.jpg'},
+      {src:'images/VIETNAM/9.jpg'},{src:'images/VIETNAM/10.jpg'},
+      {src:'images/VIETNAM/11.jpg'},{src:'images/VIETNAM/12.jpg'},
+    ]      
+  },
+  {
+    title: 'LATE LIFE',
+    cover: { src:'images/LATE_LIFE/1.jpg', w:360, h:240 },
+    photos: [
+      {src:'images/LATE_LIFE/1.jpg'},{src:'images/LATE_LIFE/2.jpg'},
+      {src:'images/LATE_LIFE/3.jpg'},{src:'images/LATE_LIFE/4.jpg'},
+      {src:'images/LATE_LIFE/5.jpg'},{src:'images/LATE_LIFE/6.jpg'},
+      {src:'images/LATE_LIFE/7.jpg'},{src:'images/LATE_LIFE/8.jpg'},
+      {src:'images/LATE_LIFE/9.jpg'},{src:'images/LATE_LIFE/10.jpg'},
+      {src:'images/LATE_LIFE/11.jpg'},{src:'images/LATE_LIFE/12.jpg'},
+      {src:'images/LATE_LIFE/13.jpg'},{src:'images/LATE_LIFE/14.jpg'},
+      {src:'images/LATE_LIFE/15.jpg'},{src:'images/LATE_LIFE/16.jpg'},
+      {src:'images/LATE_LIFE/17.jpg'},{src:'images/LATE_LIFE/18.jpg'},
+      {src:'images/LATE_LIFE/19.jpg'},{src:'images/LATE_LIFE/20.jpg'},
+      {src:'images/LATE_LIFE/21.jpg'},{src:'images/LATE_LIFE/22.jpg'},
+      {src:'images/LATE_LIFE/23.jpg'},{src:'images/LATE_LIFE/24.jpg'},
+      {src:'images/LATE_LIFE/25.jpg'},{src:'images/LATE_LIFE/26.jpg'},
+      {src:'images/LATE_LIFE/27.jpg'},{src:'images/LATE_LIFE/28.jpg'},
+      {src:'images/LATE_LIFE/29.jpg'},
+    ]
+  },
+  {
+    title: 'DIAMBAR',
+    cover: { src:'images/DIAMBAR/1.jpg', w:360, h:540 },
+    photos: [
+      {src:'images/DIAMBAR/1.jpg'},{src:'images/DIAMBAR/2.jpg'},
+      {src:'images/DIAMBAR/3.jpg'},{src:'images/DIAMBAR/4.jpg'},
+    ]
+  },
+  {
+    title: 'CONCERTS',
+    cover: { src:'images/CONCERTS/1.jpg', w:432, h:288 },
+    photos: [
+      {src:'images/CONCERTS/1.jpg'},{src:'images/CONCERTS/2.jpg'},
+      {src:'images/CONCERTS/3.jpg'},{src:'images/CONCERTS/4.jpg'},
+      {src:'images/CONCERTS/5.jpg'},{src:'images/CONCERTS/6.jpg'},
+      {src:'images/CONCERTS/7.jpg'},{src:'images/CONCERTS/8.jpg'},
+      {src:'images/CONCERTS/9.jpg'},{src:'images/CONCERTS/10.jpg'},
+      {src:'images/CONCERTS/11.jpg'},{src:'images/CONCERTS/12.jpg'},
+    ]
+  },
 ];
 
 const videos = [
   { title: 'VLOG 2023',  url: 'https://youtu.be/a-bkFyNP9uE', thumb: { src:'images/COVER/VLOG.jpg' } },
   { title: 'HNY',        url: 'https://youtu.be/rfJ3aTM-tvs', thumb: { src:'images/COVER/HNY.jpg' } },
-  { title: 'UN?REGARD?', url: 'https://youtu.be/ey2O6dK4mkw', thumb: { src:'images/COVER/REGARD.jpg' } },
-  { title: 'ISTOLE',     url: 'https://youtu.be/uLVLilZDAqQ', thumb: { src:'images/COVER/istole.jpg' } },
+  { title: 'AMSTERDAM?', url: 'https://youtu.be/FV_kiT0ydr8?si=Wq6SxC5Wz8Eaz1l7', thumb: { src:'images/COVER/AMSTERDANCOV.jpg' } },
+  { title: 'BOWLING ET SANS CULOTTES',     url: 'https://youtu.be/fw5sfElmVfY', thumb: { src:'images/COVER/BOWLINGCOV.jpg' } },
 ];
 
 const gItems = [
@@ -490,10 +570,21 @@ const gItems = [
   },
 ];
 
+// ── CLOTHES ──────────────────────────────────────────────────────────────────
+// name   : nom de la pièce
+// size   : taille
+// price  : prix affiché
+// sold   : true = grisé + lien "cop" caché
+// photos : liste de photos (la 1ère est la couverture, toutes s'ouvrent dans la lightbox)
+const clothes = [
+  { name:'bonnet lutin swag',  size:'one size',  price:'15€', sold:false, photos:['images/CLOTHES/','images/CLOTHES/'] },
+  { name:'bonnet full black toujours assorti',     size:'one size',  price:'15€', sold:false, photos:['images/CLOTHES/'] },
+  { name:'bonnet cutie cute',     size:'one size',  price:'15€', sold:false, photos:['images/CLOTHES/'] },
+];
+
 const infoPhotos = [
   { thumb: { src:'images/COVER/INFO_1.jpg' }, w:240, h:310, l:'38%', t:95  },
   { thumb: { src:'images/COVER/INFO2.jpg'  }, w:190, h:240, l:'62%', t:280 },
-  { thumb: { src:'images/COVER/INFO3.jpg'  }, w:210, h:280, l:'46%', t:430 },
 ];
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -511,13 +602,15 @@ function showPage(name){
 function makePh(cls,w,h){ const d=document.createElement('div');d.className=cls;d.style.width=w+'px';d.style.height=h+'px';return d; }
 function makeImg(src,w,h){ const i=document.createElement('img');i.src=src;i.style.cssText='width:'+w+'px;height:'+h+'px;object-fit:cover;display:block';return i; }
 
-// PHOTO WALL — 15 positions
+// PHOTO WALL — 17 positions
 const photoPos = [
   {l:3,  t:30},  {l:32, t:55},  {l:61, t:20},
   {l:72, t:330}, {l:5,  t:450}, {l:38, t:440},
   {l:63, t:520}, {l:16, t:740}, {l:50, t:760},
   {l:4,  t:1020},{l:36, t:1000},{l:66, t:1010},
-  {l:80,  t:670},{l:27,  t:1310},{l:79, t:1270} 
+  {l:80,  t:670},{l:27,  t:1310},{l:79, t:1270},
+  {l:52, t:1360},{l:"1", t:1500},{l:"5", t:1810},
+  {l:40, t:1670}
 ];
 
 const wall = document.getElementById('wall');
@@ -585,6 +678,29 @@ gItems.forEach((g,i) => {
   if(b > maxGB) maxGB = b;
 });
 gwall.style.minHeight = (maxGB + 120) + 'px';
+
+// CLOTHES
+const cgrid = document.getElementById('clothes-grid');
+clothes.forEach(c => {
+  const item = document.createElement('div');
+  item.className = 'cloth-item' + (c.sold ? ' sold' : '');
+
+  const img = document.createElement('img');
+  img.className = 'cloth-img'; img.src = c.photos[0]; img.alt = c.name;
+  img.addEventListener('click', () => openLightbox({title:c.name, photos:c.photos.map(src=>({src}))}, 0));
+  item.appendChild(img);
+
+  const lines = [
+    c.name + ' — ' + c.price,
+    'size ' + c.size,
+    c.sold ? 'sold' : '<span class="cloth-cop"><a href="https://ig.me/m/leooopoooold" target="_blank" rel="noopener">cop</a></span>'
+  ];
+  lines.forEach(l => {
+    const p = document.createElement('span'); p.className = 'cloth-meta'; p.innerHTML = l;
+    item.appendChild(p);
+  });
+  cgrid.appendChild(item);
+});
 
 // INFO
 const infoPage = document.getElementById('page-info');
